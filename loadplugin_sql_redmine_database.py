@@ -7,7 +7,7 @@ from tracker_io_common import Bug, Attachment, child_of_relation_type, parent_of
 def addArguments( parser ):
     parser.add_argument("--sql_redmine_database_host", metavar="host", type=str, help='MySQL host')
     parser.add_argument("--sql_redmine_database_login", metavar="username", type=str, help='MySQL login')
-    parser.add_argument("--sql_redmine_database_password", metavar="password", type=str, help='MySQL password')
+    parser.add_argument("--sql_redmine_database_password", metavar="password", type=str, help='MySQL password (optional)')
     parser.add_argument("--sql_redmine_database_databasename", metavar="database", type=str, help='MySQL database name')
     parser.add_argument("--sql_redmine_database_url", metavar="url", type=str, help='Redmine URL to doanload attachments from')
 

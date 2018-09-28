@@ -9,7 +9,7 @@ from tracker_io_common import Bug, Attachment
 def addArguments( parser ):
     parser.add_argument("--tuleap_api_host", metavar="host", type=str, help='Tuleap host')
     parser.add_argument("--tuleap_api_login", metavar="username", type=str, help='Tuleap login')
-    parser.add_argument("--tuleap_api_password", metavar="password", type=str, help='Tuleap password')
+    parser.add_argument("--tuleap_api_password", metavar="password", type=str, help='Tuleap password (optional)')
     parser.add_argument("--tuleap_api_tracker", metavar="tracker ID", type=int, help='Tuleap tracker ID')
 
 def checkArguments( args ):
