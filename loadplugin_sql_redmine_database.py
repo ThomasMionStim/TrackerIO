@@ -2,7 +2,7 @@
 
 import argparse
 import getpass
-from tracker_io_common import Bug, Attachment, child_of_relation_type, parent_of_relation_type
+from tracker_io_common import Bug, Attachment, child_of_relation_type, parent_of_relation_type, sizeof_fmt
 
 def addArguments( parser ):
     parser.add_argument("--sql_redmine_database_host", metavar="host", type=str, help='MySQL host')
@@ -133,13 +133,6 @@ def getIssueRelationsMap( cnx, verbose ):
     
 def GetIDAsText( id ):
     return "Redmine#" + str(id)
-
-def sizeof_fmt(num, suffix='B'):
-    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
-        if abs(num) < 1024.0:
-            return "%3.1f%s%s" % (num, unit, suffix)
-        num /= 1024.0
-    return "%.1f%s%s" % (num, 'Yi', suffix)
 
 def loadBugs( args ):
 

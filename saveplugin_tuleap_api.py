@@ -4,7 +4,7 @@ import argparse
 import getpass
 import os
 import base64
-from tracker_io_common import Bug, Attachment
+from tracker_io_common import Bug, Attachment, sizeof_fmt
 
 def addArguments( parser ):
     parser.add_argument("--tuleap_api_host", metavar="host", type=str, help='Tuleap host')
@@ -287,16 +287,18 @@ def saveBugs( args, bugs ):
     ###############################################################
     for bug in bugs:
 
-        if len(bug.summary) > 300:
-            print( "Summary of " + bug.old_id + " is too long" )
+        max_summary_size = 300
+        if len(bug.summary) > max_summary_size:
+            print( "Summary of " + bug.old_id + " is too long (max size is " + str(max_summary_size) + ")" )
             return False
 
         for (name, attachment) in bug.attachments.items():
             base64EncodedStr = base64.b64encode(attachment.content)
             file_content = base64EncodedStr.decode("utf-8")
 
-            if len(file_content) > 1048000:
-                print( "Attachment " + name + " of " + bug.old_id + " is too big and cannot be imported by current trackerIO version" )
+            max_file_size = 1048000
+            if len(file_content) > max_file_size:
+                print( "Attachment " + name + " of " + bug.old_id + " (size: " + sizeof_fmt( len(file_content) ) + ") is too big (max size is " + sizeof_fmt( max_file_size ) + ") and cannot be imported by current trackerIO version" )
                 return False
 
     ###############################################################

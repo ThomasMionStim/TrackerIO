@@ -14,6 +14,7 @@ The plugin needs:
 - [Python/request module][python_request] (was tested with v2.19.1)
 - An access to Redmine's MySQL database (was tested with MySQL server 5.5).
 - An access to Redmine through HTTP without authentification (this is an option to be set by Redmine administrator) to retrieve attachements (was tested with v1.1.0)
+- No Redmine project to be "archived", else attachments cannot be retrieved through http (Redmine administrator must unarchive all projects)
 
 Firstly, you should lock all users to make sure no issue editing is done while you do (and even after you did) the migration.
 
