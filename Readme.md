@@ -102,7 +102,7 @@ An issue has many properties that you will want to migrate to the new system. He
 | **Project name** | string | 1 | Must | <font color=green>YES</font> | <font color=green>YES (as 'original_project')</font> |
 | **Tracker name** | string | 1 | Nice | <font color=green>YES</font> | <font color=green>YES (as 'original_tracker')</font> |
 | **Author** | user id | 1 | Must | <font color=green>YES</font> | <font color=orange>YES, but as 'originally_submitted_by'</font> (actual author is the one who ran the script) |
-| **Submission date** | date | 1 | Must | <font color=orange>YES (1)</font> | <font color=red>NO (not supported by REST API)</font> (2) |
+| **Submission date** | date | 1 | Must | <font color=orange>YES (1)</font> | <font color=orange>YES, but as 'originally_submitted_on'</font> (2) |
 | **Owner** | user id | 1 | Must | <font color=green>YES</font> | <font color=green>YES (as 'originally_owned_by' and 'assigned_to' if login matchs)</font> |
 | **Status** | enum{New, Open...} | 1 | Must | <font color=green>YES</font> | <font color=green>YES</font> |
 | **Priority** | enum{Critical,High,...} | 1 | Should | <font color=orange>YES</font> | <font color=green>YES</font> |

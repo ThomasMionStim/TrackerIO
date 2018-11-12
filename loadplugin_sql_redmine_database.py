@@ -184,14 +184,15 @@ def loadBugs( args ):
             
             # Quickly get list of bugs
             issues_cursor = cnx.cursor()
-            issues_cursor.execute("SELECT id, project_id, tracker_id, assigned_to_id, status_id, priority_id, author_id, subject, description, parent_id FROM issues WHERE project_id=" + str(project_info.id))
-            for (id,project_id,tracker_id,assigned_to_id,status_id,priority_id,author_id,subject,description,parent_id) in issues_cursor:
+            issues_cursor.execute("SELECT id, project_id, tracker_id, assigned_to_id, status_id, priority_id, author_id, subject, description, parent_id, created_on FROM issues WHERE project_id=" + str(project_info.id))
+            for (id,project_id,tracker_id,assigned_to_id,status_id,priority_id,author_id,subject,description,parent_id,created_on) in issues_cursor:
                 if args.verbose:
                     print( "issue id=" + str(id) + " " + str(type(id)) )
                     print( "issue project_id=" + str(project_id) + " " + str(type(project_id)) )
                     print( "issue tracker_id=" + str(tracker_id) + " " + str(type(tracker_id)) )
                     print( "issue subject=" + str(subject) + " " + str(type(subject)) )
                     print( "issue author_id=" + str(author_id) + " " + str(type(author_id)) )
+                    print( "issue created_on=" + str(created_on) + " " + str(type(created_on)) )
                     print( "issue assigned_to_id=" + str(assigned_to_id) + " " + str(type(assigned_to_id)) )
                     print( "issue status_id=" + str(status_id) + " " + str(type(status_id)) )
                     print( "issue priority_id=" + str(priority_id) + " " + str(type(priority_id)) )
@@ -212,6 +213,8 @@ def loadBugs( args ):
                     bug.setSeverityFromText( priorities[priority_id] )
                 if author_id != None and author_id in users:
                     bug.author = users[author_id]
+                if created_on != None and author_id in users:
+                    bug.submit_date = created_on
                 if assigned_to_id != None and assigned_to_id in users:
                     bug.owner = users[assigned_to_id]
                 if parent_id != None:

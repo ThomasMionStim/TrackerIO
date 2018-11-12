@@ -4,6 +4,7 @@ import argparse
 import getpass
 import os
 import base64
+import datetime
 from tracker_io_common import Bug, Attachment, sizeof_fmt
 
 def addArguments( parser ):
@@ -53,6 +54,9 @@ def getAttributeValueString( bug, attr ):
 
     if value in attr.fieldInternalMapping:
         value = attr.fieldInternalMapping[value]
+
+    if isinstance(value, (datetime.datetime, datetime.date)):
+        value = value.isoformat()
 
     return value
   
@@ -165,6 +169,8 @@ def saveBugs( args, bugs ):
     
     # Requires tracker to have this originally_submitted_by field
     attributesToExport.append( AttributeMapping( 'author', ['originally_submitted_by'], True, False, False ) )
+    # Requires tracker to have this originally_submitted_on field
+    attributesToExport.append( AttributeMapping( 'submit_date', ['originally_submitted_on'], True, False, False ) )
     # Requires tracker to have this originally_owned_by field, optional mapping as user names may not match!
     attributesToExport.append( AttributeMapping( 'owner', ['originally_owned_by'], True, False, False ) )
     # assigned_to, optional mapping as user names may not match!

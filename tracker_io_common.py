@@ -26,13 +26,14 @@ class Bug:
         # severity from 1 to 9
         self.severity = None
         self.author = ""
+        self.submit_date = None
         self.owner = ""
         self.attachments = dict()
         self.related_ids = dict()
         self.extra_info = []
 
     def __repr__(self):
-        return self.old_id + " (" + self.project + ") " + self.tracker + " (from " + self.author + ", to " + self.owner + ", " + self.status + ", " + str(self.severity) + ") : " + self.summary + " (" + str(len(self.attachments)) + " attachments(s)) " + str(self.related_ids)
+        return self.old_id + " (" + self.project + ") " + self.tracker + " (from " + self.author + " at " + str(self.submit_date) + ", to " + self.owner + ", " + self.status + ", " + str(self.severity) + ") : " + self.summary + " (" + str(len(self.attachments)) + " attachments(s)) " + str(self.related_ids)
 
     def setStatus(self, status):
         
